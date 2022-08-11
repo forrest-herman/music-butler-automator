@@ -58,7 +58,7 @@ def add_music_butler_feed_to_playlist(url, playlist_id=DATA_ID):
         year = int(re_object.group(3))
         release_date = datetime.datetime(year, month, day)
 
-        if get_latest_date(release_date):
+        if get_latest_date(release_date) or i > 0:
             # date is newer, add the song
 
             # open the share modal
@@ -76,6 +76,8 @@ def add_music_butler_feed_to_playlist(url, playlist_id=DATA_ID):
             # close the share modal
             close_btns[i].click()
             time.sleep(1)
+        else:
+            break
 
     driver.quit()
 
